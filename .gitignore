@@ -1,2 +1,3 @@
 data/raw/train.parquet
+data/processed/cv_target_2026-01-14.parquet
 reports/
