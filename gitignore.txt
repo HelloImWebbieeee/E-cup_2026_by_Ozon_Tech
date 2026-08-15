@@ -1,0 +1,24 @@
+# Data
+data/
+*.parquet
+*.csv
+*.tsv
+*.feather
+
+# Environments
+.venv/
+env/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Models
+models/
+*.pkl
+*.joblib
+
+# VS Code
+.vscode/
