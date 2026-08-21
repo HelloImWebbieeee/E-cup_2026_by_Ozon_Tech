@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import date
+import numpy as np
 
 # PROJECT ROOT
 PROJECT_ROOT = Path(r"D:\.workspace\Programming\Projects\E-cup_2026_by_Ozon_Tech")
@@ -9,66 +10,68 @@ AS_OF = date(2026, 1, 14)
 TARGET_START = date(2026, 1, 15)
 TARGET_END = date(2026, 2, 13)
 
-# DATA DIRECTORIES
-DATA_RAW_DIR = PROJECT_ROOT / "data" / "raw"
-DATA_PROCESSED_DIR = PROJECT_ROOT / "data" / "processed"
+# 01.1 - DATASET DIRECTORIES
+DATA_DIR = PROJECT_ROOT / "data"
+DATA_RAW_DIR = DATA_DIR / "raw"
+DATA_PROCESSED_DIR = DATA_DIR / "processed"
 DATA_FEATURES_DIR = DATA_PROCESSED_DIR / "features"
 
-# DATA PATHS
+# 01.2 - DATASET PATHS
 TRAIN_PATH = DATA_RAW_DIR / "train.parquet"
 CV_TARGET_PATH = DATA_PROCESSED_DIR / "cv_target_2026-01-14.parquet"
 HISTORY_PATH = DATA_PROCESSED_DIR / "history_before_2026-01-14.parquet"
 CV_FEATURES_PATH = DATA_FEATURES_DIR / "cv_features_2026-01-14.parquet"
 
-# REPORTS PATHS
+# 02.1 - MODEL DIRECTORIES
+MODELS_DIR = PROJECT_ROOT / "models"
+
+# 03.1 REPORTS DIRECTORIES
 REPORTS_DIR = PROJECT_ROOT / "reports"
 REPORTS_GMV_DIR = REPORTS_DIR / "gmv"
 REPORTS_CONV_FUNL_DIR = REPORTS_DIR / "conv_funl"
 REPORTS_FEATURES_DIR = REPORTS_DIR / "features"
-REPORTS_MODELS_DIR = REPORTS_DIR / "models"
 
-# MODELS PATHS
-MODELS_DIR = PROJECT_ROOT / "models"
+# 03.2 - MODEL LEARNING REPORTS DIRECTORIES
+REPORTS_MODELS_DIR = REPORTS_DIR / "models"
+REPORTS_MODELS_GRAPHS_DIR = REPORTS_MODELS_DIR / "graphs"
+REPORTS_MODELS_LOGS_DIR = REPORTS_MODELS_DIR / "logs"
+
+# REPEATABILITY OF EXPERIMENTS
+RANDOM_STATE = 17
+RANDOM_STATES_100 = np.linspace(1, 100, 1)
+
+# GMV BINS
+BIN_ORDER = ["0-1%", "1-5%", "5-10%", "10-20%", "20-50%", "50-100%"]
+
+# WINDOWS FOR TIME SERIES FEATURES
+WINDOWS = [7, 14, 28, 30, 60, 90]
 
 # CREATE DIRECTORIES
 def create_directories():
     """Creates all the necessary directories"""
     dirs = [
-        DATA_RAW_DIR,
-        DATA_PROCESSED_DIR,
-        DATA_FEATURES_DIR,
-        REPORTS_DIR,
-        REPORTS_GMV_DIR,
-        REPORTS_CONV_FUNL_DIR,
-        REPORTS_FEATURES_DIR,
-        REPORTS_MODELS_DIR,
+        # Datasets
+        DATA_DIR,
+        DATA_RAW_DIR, DATA_PROCESSED_DIR, DATA_FEATURES_DIR,
+
+        # Models
         MODELS_DIR,
+
+        # Reports
+        REPORTS_DIR,
+        REPORTS_GMV_DIR, REPORTS_CONV_FUNL_DIR,
+        REPORTS_FEATURES_DIR,
+        REPORTS_MODELS_DIR, REPORTS_MODELS_GRAPHS_DIR, REPORTS_MODELS_LOGS_DIR
     ]
     for d in dirs:
         d.mkdir(parents = True, exist_ok = True)
-    print("All directories created successfully.")
-
-# FEATURE ENGINEERING CONFIG
-WINDOWS = [7, 14, 30, 60, 90, 180, 365]
-
-GMV_COLS = ["gmv", "gmv_search", "gmv_cat"]
-ACTIVITY_COLS = ["search", "cat", "to_cart", "to_ord"]
-CONVERSION_COLS = [
-    "search_to_cart", "search_to_ord",
-    "cat_to_cart", "cat_to_ord",
-    "has_search_to_cart", "has_search_to_ord",
-    "has_cat_to_cart", "has_cat_to_ord",
-]
-
-# GMV BINS
-BIN_ORDER = ["0-1%", "1-5%", "5-10%", "10-20%", "20-50%", "50-100%"]
+    print("All directories created successfully")
 
 # VALIDATION
 def validate_data_exists():
     """Checks for the necessary files"""
     checks = [
-        ("TRAIN_PATH", TRAIN_PATH),
-        ("CV_TARGET_PATH", CV_TARGET_PATH),
+        ("TRAIN_PATH", TRAIN_PATH)
     ]
     
     all_ok = True
@@ -81,8 +84,8 @@ def validate_data_exists():
             all_ok = False
     
     if all_ok:
-        print("\nAll data files are present.")
+        print("\nAll data files are present")
     else:
-        print("\nSome data files are missing!")
+        print("\nSome data files are missing")
     
     return all_ok
