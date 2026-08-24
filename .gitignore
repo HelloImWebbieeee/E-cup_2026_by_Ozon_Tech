@@ -1,6 +1,7 @@
 # DATA
 data/raw/
 data/processed/
+data/submissions/
 
 # REPORTS
 reports/
