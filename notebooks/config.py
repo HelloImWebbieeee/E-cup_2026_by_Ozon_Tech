@@ -5,22 +5,29 @@ import numpy as np
 # PROJECT ROOT
 PROJECT_ROOT = Path(r"D:\.workspace\Programming\Projects\E-cup_2026_by_Ozon_Tech")
 
-# DATES
-AS_OF = date(2026, 1, 14)
-TARGET_START = date(2026, 1, 15)
-TARGET_END = date(2026, 2, 13)
+# 00.1 - CV DATES
+CV_AS_OF = date(2026, 1, 14)
+CV_TARGET_START = date(2026, 1, 15)
+CV_TARGET_END = date(2026, 2, 13)
 
-# 01.1 - DATASET DIRECTORIES
+# 00.2 - TARGET DATES
+TARGET_AS_OF = date(2026, 2, 13)
+TARGET_START = date(2026, 2, 14)
+TARGET_END = date(2026, 3, 15)
+
+# 01.1 - DATASETS DIRECTORIES
 DATA_DIR = PROJECT_ROOT / "data"
 DATA_RAW_DIR = DATA_DIR / "raw"
 DATA_PROCESSED_DIR = DATA_DIR / "processed"
 DATA_FEATURES_DIR = DATA_PROCESSED_DIR / "features"
+DATA_SUBMISSIONS_DIR = DATA_DIR / "submissions"
 
-# 01.2 - DATASET PATHS
+# 01.2 - DATASETS PATHS
 TRAIN_PATH = DATA_RAW_DIR / "train.parquet"
 CV_TARGET_PATH = DATA_PROCESSED_DIR / "cv_target_2026-01-14.parquet"
 HISTORY_PATH = DATA_PROCESSED_DIR / "history_before_2026-01-14.parquet"
 CV_FEATURES_PATH = DATA_FEATURES_DIR / "cv_features_2026-01-14.parquet"
+TARGET_FEATURES_PATH = DATA_FEATURES_DIR / "target_features_2026-02-13.parquet"
 
 # 02.1 - MODEL DIRECTORIES
 MODELS_DIR = PROJECT_ROOT / "models"
@@ -52,7 +59,7 @@ def create_directories():
     dirs = [
         # Datasets
         DATA_DIR,
-        DATA_RAW_DIR, DATA_PROCESSED_DIR, DATA_FEATURES_DIR,
+        DATA_RAW_DIR, DATA_PROCESSED_DIR, DATA_FEATURES_DIR, DATA_SUBMISSIONS_DIR,
 
         # Models
         MODELS_DIR,
