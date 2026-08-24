@@ -1,7 +1,5 @@
 # DATA
-data/raw/
-data/processed/
-data/submissions/
+data/
 
 # REPORTS
 reports/
