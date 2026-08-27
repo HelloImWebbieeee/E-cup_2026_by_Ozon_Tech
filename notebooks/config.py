@@ -28,6 +28,7 @@ CV_TARGET_PATH = DATA_PROCESSED_DIR / "cv_target_2026-01-14.parquet"
 HISTORY_PATH = DATA_PROCESSED_DIR / "history_before_2026-01-14.parquet"
 CV_FEATURES_PATH = DATA_FEATURES_DIR / "cv_features_2026-01-14.parquet"
 TARGET_FEATURES_PATH = DATA_FEATURES_DIR / "target_features_2026-02-13.parquet"
+CV_SPLIT_PATH = DATA_PROCESSED_DIR / "cv_split_labels.parquet"
 
 # 02.1 - MODEL DIRECTORIES
 MODELS_DIR = PROJECT_ROOT / "models"
@@ -51,7 +52,7 @@ RANDOM_STATES_100 = np.linspace(1, 100, 1)
 BIN_ORDER = ["0-1%", "1-5%", "5-10%", "10-20%", "20-50%", "50-100%"]
 
 # WINDOWS FOR TIME SERIES FEATURES
-WINDOWS = [7, 14, 28, 30, 60, 90]
+WINDOWS = [7, 14, 30, 90]
 
 # CREATE DIRECTORIES
 def create_directories():
